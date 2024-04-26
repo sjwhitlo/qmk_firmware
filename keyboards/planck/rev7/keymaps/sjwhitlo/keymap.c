@@ -271,12 +271,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
             break;
         case MEDIA:
-            HSV previousHSV = rgblight_get_hsv();
+            uint8_t previousHue = rgblight_get_hue();
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_SELECTION);
                 rgblight_setrgb(RGB_PURPLE);
             } else {
-                rgblight_sethsv(previousHSV);
+                rgblight_sethue(previousHue);
             }
             return false;
             break;
