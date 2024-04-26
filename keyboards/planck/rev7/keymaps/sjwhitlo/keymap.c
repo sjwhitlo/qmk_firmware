@@ -244,7 +244,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         case _MEDIA:
             rgblight_setrgb(RGB_PURPLE);
             break;
-        case _LAYERS:
+        case _LAYER_SELECT:
             rgblight_setrgb(RGB_WHITE);
             break;
     }
