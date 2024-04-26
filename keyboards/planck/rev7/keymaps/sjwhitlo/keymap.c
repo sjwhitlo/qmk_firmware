@@ -273,7 +273,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
             break;
         case MEDIA:
-            static rgblight_config_t rgb_config_previous;
+            rgblight_config_t rgb_config_previous;
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_SELECTION);
                 rgb_config_previous = rgblight_config;
