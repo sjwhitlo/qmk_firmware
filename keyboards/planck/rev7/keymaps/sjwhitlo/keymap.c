@@ -291,18 +291,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
-        case MEDIA:
-            if (record->event.pressed) {
-                break;
-            }
-            return false;
-            break;
-        case LAYERS:
-            if (record->event.pressed) {
-                break;
-            }
-            return false;
-            break;
+//        case MEDIA:
+//            if (record->event.pressed) {
+//                break;
+//            }
+//            return false;
+//            break;
+//        case LAYERS:
+//            if (record->event.pressed) {
+//                break;
+//            }
+//            return false;
+//            break;
     }
     return true;
 }
