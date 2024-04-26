@@ -279,7 +279,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 rgb_config_previous = rgblight_config;
                 rgblight_setrgb(RGB_PURPLE);
             } else {
-                rgblight_config = rgblight_config_previous;
+                rgblight_config = rgb_config_previous;
             }
             return false;
             break;
