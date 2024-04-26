@@ -272,11 +272,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case MEDIA:
             uint8_t previousHue = rgblight_get_hue();
+            uint8_t previousSat = rgblight_get_sat();
+            uint8_t previousVal = rgblight_get_val();
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_SELECTION);
                 rgblight_setrgb(RGB_PURPLE);
             } else {
-                rgblight_sethue(previousHue);
+                rgblight_sethsv(previousHue, previousSat, previousVal);
             }
             return false;
             break;
