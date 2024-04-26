@@ -264,37 +264,49 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RED:
             if (record->event.pressed) {
                 print("mode just switched to qwerty and this is a huge string\n");
+                SEND_STRING("QWERTY intent registered");
                 set_single_persistent_default_layer(_QWERTY);
+                SEND_STRING("QWERTY activated");
             }
             return false;
             break;
         case GREEN:
             if (record->event.pressed) {
+                SEND_STRING("NUM PAD intent registered");
                 set_single_persistent_default_layer(_NUMPAD);
+                SEND_STRING("NUM PAD activated");
             }
             return false;
             break;
         case BLUE:
             if (record->event.pressed) {
+                SEND_STRING("STENO intent registered");
                 set_single_persistent_default_layer(_STENO);
+                SEND_STRING("STENO activated");
             }
             return false;
             break;
         case CYAN:
             if (record->event.pressed) {
+                SEND_STRING("KB SETTINGS intent registered");
                 set_single_persistent_default_layer(_KEYBOARD_SETTINGS);
+                SEND_STRING("KB SETTINGS activated");
             }
             return false;
             break;
         case MAGENTA:
             if (record->event.pressed) {
+                SEND_STRING("TEAMS intent registered");
                 set_single_persistent_default_layer(_TEAMS);
+                SEND_STRING("TEAMS activated");
             }
             return false;
             break;
         case YELLOW:
             if (record->event.pressed) {
+                SEND_STRING("SELECTION intent registered");
                 set_single_persistent_default_layer(_SELECTION);
+                SEND_STRING("SELECTION activated");
             }
             return false;
             break;
