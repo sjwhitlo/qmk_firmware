@@ -15,8 +15,6 @@
  */
 
 #include QMK_KEYBOARD_H
-#include "rgblight.h"
-extern rgblight_config_t rgblight_config;
 
 enum planck_layers { _QWERTY, _QWERTY_NUM, _NUMPAD, _SELECTION, _STENO, _TEAMS, _KEYBOARD_SETTINGS, _MEDIA, _LAYER_SELECT, _QWERTY_CODE };
 
@@ -224,6 +222,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     state = update_tri_layer_state(state, _QWERTY_NUM, _LAYER_SELECT, _QWERTY_CODE);
+    switch (state):
+        case _QWERTY:
+            rgblight_setrgb(RGB_RED);
+            break;
+        case _NUMPAD:
+            rgblight_setrgb(RGB_GREEN);
+            break;
+        case _STENO:
+            rgblight_setrgb(RGB_BLUE);
+            break;
+        case _KEYBOARD_SETTINGS:
+            rgblight_setrgb(RGB_CYAN);
+            break;
+        case _TEAMS:
+            rgblight_setrgb(RGB_MAGENTA);
+            break;
+        case _SELECTION:
+            rgblight_setrgb(RGB_YELLOW);
+            break;
+        case _MEDIA:
+            rgblight_setrgb(RGB_PURPLE);
+            break;
+        case _LAYERS:
+            rgblight_setrgb(RGB_WHITE);
+            break;
+            
     return state;
 }
 
@@ -233,60 +257,48 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 print("mode just switched to qwerty and this is a huge string\n");
                 set_single_persistent_default_layer(_QWERTY);
-                rgblight_setrgb(RGB_RED);
             }
             return false;
             break;
         case GREEN:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_NUMPAD);
-                rgblight_setrgb(RGB_GREEN);
             }
             return false;
             break;
         case BLUE:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_STENO);
-                rgblight_setrgb(RGB_BLUE);
             }
             return false;
             break;
         case CYAN:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_KEYBOARD_SETTINGS);
-                rgblight_setrgb(RGB_CYAN);
             }
             return false;
             break;
         case MAGENTA:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_TEAMS);
-                rgblight_setrgb(RGB_MAGENTA);
             }
             return false;
             break;
         case YELLOW:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_SELECTION);
-                rgblight_setrgb(RGB_YELLOW);
             }
             return false;
             break;
         case MEDIA:
-            rgblight_config_t rgb_config_previous;
             if (record->event.pressed) {
-                set_single_persistent_default_layer(_SELECTION);
-                rgb_config_previous = rgblight_config;
-                rgblight_setrgb(RGB_PURPLE);
-            } else {
-                rgblight_config = rgb_config_previous;
+                break;
             }
             return false;
             break;
         case LAYERS:
             if (record->event.pressed) {
-                set_single_persistent_default_layer(_SELECTION);
-                rgblight_setrgb(RGB_WHITE);
+                break;
             }
             return false;
             break;
@@ -327,3 +339,27 @@ uint32_t reset_note(uint32_t trigger_time, void *note) {
     *(float*)note = 440.0f;
     return 0;
 }
+
+//const rgblight_segment_t PROGMEM qwerty_light[] = RGBLIGHT_lAYER_SEGMENTS( {0, 9, RGB_RED} );
+//const rgblight_segment_t PROGMEM numpad_light[] = RGBLIGHT_lAYER_SEGMENTS( {0, 9, RGB_GREEN} );
+//const rgblight_segment_t PROGMEM steno_light[] = RGBLIGHT_lAYER_SEGMENTS( {0, 9, RGB_BLUE} );
+//const rgblight_segment_t PROGMEM kb_settings_light[] = RGBLIGHT_lAYER_SEGMENTS( {0, 9, RGB_CYAN} );
+//const rgblight_segment_t PROGMEM teams_light[] = RGBLIGHT_lAYER_SEGMENTS( {0, 9, RGB_MAGENTA} );
+//const rgblight_segment_t PROGMEM selection_light[] = RGBLIGHT_lAYER_SEGMENTS( {0, 9, RGB_YELLOW} );
+//const rgblight_segment_t PROGMEM layers_light[] = RGBLIGHT_lAYER_SEGMENTS( {0, 9, RGB_WHITE} );
+//const rgblight_segment_t PROGMEM media_light[] = RGBLIGHT_lAYER_SEGMENTS( {0, 9, RGB_PURPLE} );
+//
+//const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+//    qwerty_light,
+//    numpad_light,
+//    steno_light,
+//    kb_settings_light,
+//    teams_light,
+//    selection_light,
+//    layers_light,
+//    media_light
+//);
+//
+//void keyboard_post_init_user(void) {
+//    rgblight_layers = my_rgb_layers;
+//}
