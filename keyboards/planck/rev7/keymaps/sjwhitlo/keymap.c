@@ -222,36 +222,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     state = update_tri_layer_state(state, _QWERTY_NUM, _LAYER_SELECT, _QWERTY_CODE);
-    switch (get_highest_layer(state)) {
-    case _QWERTY:
-        rgblight_setrgb(RGB_RED);
-        break;
-    case _NUMPAD:
-        rgblight_setrgb(RGB_GREEN);
-        break;
-    case _STENO:
-        rgblight_setrgb(RGB_BLUE);
-        break;
-    case _KEYBOARD_SETTINGS:
-        rgblight_setrgb(RGB_CYAN);
-        break;
-    case _TEAMS:
-        rgblight_setrgb(RGB_MAGENTA);
-        break;
-    case _SELECTION:
-        rgblight_setrgb(RGB_YELLOW);
-        break;
-    case _MEDIA:
-        rgblight_setrgb(RGB_PURPLE);
-        break;
-    case _LAYER_SELECT:
-        rgblight_setrgb(RGB_WHITE);
-        break;
-    default: //  for any other layers, or the default layer
-        rgblight_setrgb(RGB_RED);
-        break;
-    }
-  return state;
+    return state;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -259,49 +230,60 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RED:
             if (record->event.pressed) {
                 print("mode just switched to qwerty and this is a huge string\n");
-                SEND_STRING("QWERTY intent registered");
                 set_single_persistent_default_layer(_QWERTY);
-                SEND_STRING("QWERTY activated");
+                rgblight_setrgb(RGB_RED);
             }
             return false;
             break;
         case GREEN:
             if (record->event.pressed) {
-                SEND_STRING("NUM PAD intent registered");
                 set_single_persistent_default_layer(_NUMPAD);
-                SEND_STRING("NUM PAD activated");
+                rgblight_setrgb(RGB_GREEN);
             }
             return false;
             break;
         case BLUE:
             if (record->event.pressed) {
-                SEND_STRING("STENO intent registered");
                 set_single_persistent_default_layer(_STENO);
-                SEND_STRING("STENO activated");
+                rgblight_setrgb(RGB_BLUE);
             }
             return false;
             break;
         case CYAN:
             if (record->event.pressed) {
-                SEND_STRING("KB SETTINGS intent registered");
                 set_single_persistent_default_layer(_KEYBOARD_SETTINGS);
-                SEND_STRING("KB SETTINGS activated");
+                rgblight_setrgb(RGB_CYAN);
             }
             return false;
             break;
         case MAGENTA:
             if (record->event.pressed) {
-                SEND_STRING("TEAMS intent registered");
                 set_single_persistent_default_layer(_TEAMS);
-                SEND_STRING("TEAMS activated");
+                rgblight_setrgb(RGB_MAGENTA);
             }
             return false;
             break;
         case YELLOW:
             if (record->event.pressed) {
-                SEND_STRING("SELECTION intent registered");
                 set_single_persistent_default_layer(_SELECTION);
-                SEND_STRING("SELECTION activated");
+                rgblight_setrgb(RGB_YELLOW);
+            }
+            return false;
+            break;
+        case MEDIA:
+            HSV previousHSV = rgblight_get_hsv();
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_SELECTION);
+                rgblight_setrgb(RGB_PURPLE);
+            } else {
+                rgblight_sethsv(previousHSV);
+            }
+            return false;
+            break;
+        case LAYERS:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_SELECTION);
+                rgblight_setrgb(RGB_WHITE);
             }
             return false;
             break;
