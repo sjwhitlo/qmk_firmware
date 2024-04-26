@@ -222,7 +222,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     state = update_tri_layer_state(state, _QWERTY_NUM, _LAYER_SELECT, _QWERTY_CODE);
-    switch (state):
+    switch (state) {
         case _QWERTY:
             rgblight_setrgb(RGB_RED);
             break;
@@ -247,6 +247,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         case _LAYERS:
             rgblight_setrgb(RGB_WHITE);
             break;
+    }
             
     return state;
 }
