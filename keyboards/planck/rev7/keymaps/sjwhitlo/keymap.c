@@ -15,7 +15,7 @@
  */
 
 #include QMK_KEYBOARD_H
-#include "color.h"
+#include <stdint.h>
 
 enum planck_layers { _QWERTY, _QWERTY_NUM, _NUMPAD, _SELECTION, _STENO, _TEAMS, _KEYBOARD_SETTINGS, _MEDIA, _LAYER_SELECT, _QWERTY_CODE };
 
@@ -272,16 +272,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
             break;
         case MEDIA:
-            HSV previousHSV = rgblight_get_hsv();
-//            uint8_t previousHue = rgblight_get_hue();
-//            uint8_t previousSat = rgblight_get_sat();
-//            uint8_t previousVal = rgblight_get_val();
+//            HSV previousHSV = rgblight_get_hsv();
+            uint8_t previousHue = rgblight_get_hue();
+            uint8_t previousSat = rgblight_get_sat();
+            uint8_t previousVal = rgblight_get_val();
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_SELECTION);
                 rgblight_setrgb(RGB_PURPLE);
             } else {
-                rgblight_sethsv(previousHSV);
-//                rgblight_sethsv(previousHue, previousSat, previousVal);
+//                rgblight_sethsv(previousHSV);
+                rgblight_sethsv(previousHue, previousSat, previousVal);
             }
             return false;
             break;
