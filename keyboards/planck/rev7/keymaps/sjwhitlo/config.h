@@ -17,3 +17,4 @@
 #pragma once
 
 //#define RGBLIGHT_LAYERS
+#define NO_MUSIC_MODE

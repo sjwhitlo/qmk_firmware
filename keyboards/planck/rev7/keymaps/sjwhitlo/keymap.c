@@ -103,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_NUMPAD] = LAYOUT_planck_grid(
     KC_TAB,  XXXXXXX, XXXXXXX, KC_UP,   XXXXXXX, XXXXXXX, XXXXXXX, KC_P7,   KC_P8,   KC_P9,   KC_PAST, KC_BSPC,
-    KC_ESC,  XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PMNS, KC_PSLS,
+    KC_ESC,  XXXXXXX, KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX, XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PMNS, KC_PSLS,
     KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_PPLS, KC_PENT,
     KC_LCTL, KC_LALT, KC_LGUI, LAYERS,  XXXXXXX, XXXXXXX, KC_P0,   KC_PDOT, MEDIA,   XXXXXXX, XXXXXXX, XXXXXXX
 ),
@@ -157,7 +157,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_SELECTION] = LAYOUT_planck_grid(
     KC_TAB,  G(KC_Y), XXXXXXX, G(KC_A), G(KC_D), XXXXXXX, XXXXXXX, XXXXXXX, KC_UP,   XXXXXXX, XXXXXXX, KC_BSPC,
-    KC_ESC,  G(KC_Z), G(KC_X), G(KC_C), G(KC_V), XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX,
+    KC_ESC,  G(KC_Z), G(KC_X), G(KC_C), G(KC_V), XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX, XXXXXXX,
     KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     KC_LCTL, KC_LALT, KC_LGUI, LAYERS,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MEDIA,   XXXXXXX, XXXXXXX, XXXXXXX
 ),
@@ -183,18 +183,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Media
  * ,-----------------------------------------------------------------------------------------------------------.
- * |        |        | BkLt - |Tog BkLt| BkLt + |        |        |  Prev  |  Play  |  Next  |        |        |
+ * |        |        | BkLt - |Tog BkLt| BkLt + |        |        |  Mute  | Vol -  | Vol +  |        |        |
  * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- * |        |        |        | Brt -  | Brt +  |        |        |  Mute  | Vol -  | Vol +  |        |        |
+ * |        |        |        | Brt -  | Brt +  |        |        |  Prev  |  Play  |  Next  |        |        |
  * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- * |        |        |KB Brt -|KBBrtTog|KB Brt +|        |        |        |        |        |        |        |
+ * |        |        |KB Brt -|KBBrtTog|KB Brt +|        |        |        |        |        |        |
  * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  * |        |        |        | LAYERS |        |        |        |        | -hold- |        |        |        |
  * `-----------------------------------------------------------------------------------------------------------'
  */
 [_MEDIA] = LAYOUT_planck_grid(
-    XXXXXXX, XXXXXXX, BL_DOWN, BL_TOGG, BL_UP,   XXXXXXX, XXXXXXX, KC_MRWD, KC_MPLY, KC_MFFD, XXXXXXX, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, KC_BRID, KC_BRIU, XXXXXXX, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX,
+    XXXXXXX, XXXXXXX, BL_DOWN, BL_TOGG, BL_UP,   XXXXXXX, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX,
+    XXXXXXX, XXXXXXX, XXXXXXX, KC_BRID, KC_BRIU, XXXXXXX, XXXXXXX, KC_MRWD, KC_MPLY, KC_MFFD, XXXXXXX, XXXXXXX,
     XXXXXXX, XXXXXXX, RGB_VAD, RGB_TOG, RGB_VAI, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, LAYERS,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX
 ),
@@ -212,7 +212,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LAYER_SELECT] = LAYOUT_planck_grid(
     XXXXXXX, XXXXXXX, CYAN,    MAGENTA, YELLOW,  XXXXXXX, XXXXXXX, XXXXXXX, KC_UP,   XXXXXXX, XXXXXXX, XXXXXXX,
-    XXXXXXX, XXXXXXX, RED,     GREEN,   BLUE,    XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX,
+    XXXXXXX, XXXXXXX, RED,     GREEN,   BLUE,    XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MPLY, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 )
@@ -220,9 +220,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 /* clang-format on */
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-    state = update_tri_layer_state(state, _QWERTY_NUM, _LAYER_SELECT, _QWERTY_CODE);
-    switch (state) {
+void set_underglow_lighting(layer_state_t state) {
+    switch (get_highest_layer(state)) {
         case _QWERTY:
             rgblight_setrgb(RGB_RED);
             break;
@@ -248,7 +247,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             rgblight_setrgb(RGB_WHITE);
             break;
     }
-            
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    state = update_tri_layer_state(state, _QWERTY_NUM, _LAYER_SELECT, _QWERTY_CODE);
+    set_underglow_lighting(state);
     return state;
 }
 
