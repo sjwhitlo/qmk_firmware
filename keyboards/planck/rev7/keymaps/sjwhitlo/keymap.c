@@ -30,7 +30,7 @@ enum planck_keycodes { QWERTY = SAFE_RANGE, RED, GREEN, BLUE, CYAN, MAGENTA, YEL
 #define TGL_MIC SGUI(KC_M)
 #define TGL_VID SGUI(KC_O)
 #define OPN_CHT SGUI(KC_R)
-#define TM_SAFE OSM(KC_LSFT | KC_LGUI)
+#define TM_SAFE OSM(MOD_LSFT | MOD_LGUI)
 
 
 /* clang-format off */
